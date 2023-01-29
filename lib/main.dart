@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx/secondpage.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: {
-        '/': (context) => const MyApp(),
-        '/second': (context) => const SecondPage(),
-      },
+      getPages: [
+        GetPage(name: '/', page: () => const MyApp()),
+        GetPage(
+            name: '/second',
+            page: () => const SecondPage(),
+            transition: Transition.rightToLeft),
+      ],
+      // routes: {
+      //   '/': (context) => const MyApp(),
+      //   '/second': (context) => const SecondPage(),
+      // },
       // home: const MyApp(),
     ),
   );
@@ -39,7 +47,8 @@ class _MyAppState extends State<MyApp> {
             // );
             // Get.to(const SecondPage());
             // Get.off(const SecondPage());
-            Navigator.of(context).pushNamed('/second');
+            // Navigator.of(context).pushNamed('/second');
+            Get.toNamed('/second');
           },
           child: const Text("Go to Next"),
         ),
