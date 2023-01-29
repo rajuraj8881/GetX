@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   // var text = "click".obs;
   // RxInt count = 0.obs;
   // List text = ['item1', 'item2'].obs; //import this list from MyController
-  MyController myController = Get.put(MyController());
+  // MyController myController = Get.put(MyController()); //inside GetBuilder call the instance
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +38,15 @@ class _MyAppState extends State<MyApp> {
       //     },
       //   ),
       // ),
-      body: Obx(
-        () => ListView.builder(
-          itemCount: myController.text.length,
+      body: GetBuilder<MyController>(
+        init: MyController(),
+        builder: (controller) => ListView.builder(
+          itemCount: controller.text.length,
           itemBuilder: (context, index) => ListTile(
-            title: Text(myController.text[index]),
+            title: Text(controller.text[index]),
             onTap: () {
-              myController.text.add('item $index');
+              // controller.text.add('item $index');
+              controller.addItem(index);
             },
           ),
         ),
