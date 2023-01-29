@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:getx/secondpage.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
@@ -18,6 +18,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var text = "click".obs;
+  RxInt count = 0.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +28,11 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Center(
         child: ElevatedButton(
+          child: Obx(() => Text('${text.value} ${count.value}')),
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SecondPage(),
-              ),
-            );
+            text.value = 'clicked';
+            count.value++;
           },
-          child: const Text("Go to Next"),
         ),
       ),
     );
