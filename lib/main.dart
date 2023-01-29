@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx/secondpage.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
@@ -27,11 +28,13 @@ class _MyAppState extends State<MyApp> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SecondPage(),
-              ),
-            );
+            // Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //     builder: (context) => const SecondPage(),
+            //   ),
+            // );
+            Get.to(const SecondPage());
+            // Get.off(const SecondPage());
           },
           child: const Text("Go to Next"),
         ),
